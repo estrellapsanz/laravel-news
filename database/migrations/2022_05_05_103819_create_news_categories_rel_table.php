@@ -11,14 +11,33 @@ return new class extends Migration
      *
      * @return void
      */
+
     public function up()
     {
-        Schema::create('news_categories_laravel', function (Blueprint $table) {
-           // $table->integer('id_new');
-           // $table->integer('id_category');
 
-            $table->foreign('id_new')->references('id')->on('news_laravel');
-            $table->foreign('id_category')->references('id')->on('categories_laravel');
+        Schema::create('news_categories_laravel', function (Blueprint $table) {
+            $table->unsignedInteger('id_new');
+            $table->unsignedInteger('id_category');
+        });
+
+        Schema::table('news_categories_laravel', function (Blueprint $table) {
+        $table->foreign('id_new')->references('id')->on('news_laravel')->onDelete('cascade');;
+        $table->foreign('id_category')->references('id')->on('categories_laravel')->onDelete('cascade');;
+      });
+    }
+
+
+
+   /* public function up()
+    {
+        Schema::create('news_categories_laravel', function (Blueprint $table) {
+            $table->unsignedInteger('id_new');
+            $table->unsignedInteger('id_category');*/
+
+            /*$table->index('id_new');
+            $table->index('id_category');*/
+            //$table->foreign('id_new')->references('id')->on('news_laravel')->onDelete('cascade');;
+            //$table->foreign('id_category')->references('id')->on('categories_laravel')->onDelete('cascade');;
 
          /*   $table->foreignId('id_new')
       ->constrained()
@@ -30,8 +49,8 @@ return new class extends Migration
       ->onUpdate('cascade')
       ->onDelete('cascade');
       */
-        });
-    }
+        //});
+    //}
 
     /**
      * Reverse the migrations.
@@ -42,4 +61,6 @@ return new class extends Migration
     {
         Schema::dropIfExists('news_categories_laravel');
     }
+
+
 };

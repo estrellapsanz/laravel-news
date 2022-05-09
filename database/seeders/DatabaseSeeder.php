@@ -7,6 +7,8 @@ use App\Models\News;
 use App\Models\NewsCategories;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Schema;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,11 +19,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+
+        Schema::disableForeignKeyConstraints();
         News::truncate();
         Categories::truncate();
         NewsCategories::truncate();
+        Schema::enableForeignKeyConstraints();
 
-         \App\Models\News::factory(100)->create();
+
+
+        \App\Models\Categories::factory(6)->create();
+        \App\Models\NewsCategories::factory(150)->create();
+
+
+        /* \App\Models\News::factory(100)->create();
 
 
          $nacional=Categories::create( ['name'=>'Nacional']);
@@ -34,7 +46,7 @@ class DatabaseSeeder extends Seeder
          $categories= [$nacional, $internacional, $economia, $deportes, $cultura, $ciencia];
 
 
-         /*creamos la relacion entre las noticias y las categorias*/
+         //creamos la relacion entre las noticias y las categorias
          for ($i = 0; $i < 150; $i++) {
              if ($i<100) {
             NewsCategories::create([
@@ -47,7 +59,7 @@ class DatabaseSeeder extends Seeder
                 'id_new'=>rand(1,100)
             ]);
         }
-        }
+        }*/
 
 
     }

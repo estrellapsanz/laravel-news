@@ -37,7 +37,7 @@ class Categories extends Model
      */
     public function news()
     {
-        return $this->belongsToMany(News::class, 'news_categories_laravel','id_new','id_category');
+        return $this->belongsToMany(News::class, 'news_categories_laravel','id_category','id_new');
     }
 
 
