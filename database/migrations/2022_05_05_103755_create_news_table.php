@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('news_laravel', function (Blueprint $table) {
-            $table->increments('id');
+            //$table->increments('id');
+            $table->id();
             $table->string('title',254);
             $table->string('author',150);
             $table->timestamp('publication_date');
