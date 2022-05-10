@@ -4,25 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\News;
+use App\Http\Resources\NewsResource;
 
 class NewsController extends Controller
 {
 
-       /**
-     * The user repository instance.
-     */
-    protected $news;
-
-    /**
-     * Create a new controller instance.
-     *
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->news =new News;
-    }
     /**
      * Show the news or the new for a given id_new.
      *
@@ -32,16 +18,17 @@ class NewsController extends Controller
     public function news($id=null)
     {
 
-        if (!$id) {
-            $news=$this->news->all()->take(5)->toArray();
-
-        }else
-        {
-            $news[]=$this->news->find(intval($id))->toArray();
-
-        }
-
+        if (!$id)
+            $news=News::all()->take(5)->toArray();
+        else
+            $news[]=News::find(intval($id))->toArray();
 
         return view('news', ['news' => $news, 'id'=>intval($id)]);
     }
+
+   /* public function index()
+    {
+        $news = News::all();
+        return NewsResource::collection($news);
+    }*/
 }
