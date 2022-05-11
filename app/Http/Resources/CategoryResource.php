@@ -16,8 +16,8 @@ class CategoryResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'news'=>NewsResource::collection($this->whenLoaded('news'))
+            'title' => $this->title,
+            'publication_date'=>$this->publication_date
         ];
     }
 }

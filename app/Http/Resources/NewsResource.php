@@ -5,6 +5,8 @@ namespace App\Http\Resources;
 use App\Models\Categories;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+use function Ramsey\Uuid\v1;
+
 class NewsResource extends JsonResource
 {
     /**
@@ -16,7 +18,7 @@ class NewsResource extends JsonResource
     public function toArray($request)
     {
 
-        if (!$request->is('*/noticias/*')) {
+        if ($request->is('*/noticia/*')) {
         return [
             'id' => $this->id,
             'title' => $this->title,
@@ -27,12 +29,18 @@ class NewsResource extends JsonResource
             'categories'=>CategoryResource::collection($this->categories)
         ];
     }
-    else{
-        return    [
-        'id' => $this->id,
-        'title' => $this->title,
-        'publication_date' => $this->publication_date
-        ];
-    }
-    }
-}
+        else if ($request->is('*/noticias/*')) {{
+            return    [
+            'id' => $this->id,
+            'title' => $this->title,
+            'publication_date' => $this->publication_date
+            ];
+        }
+        } else if ($request->is('*/categoria/*')) {{
+                return    [
+                    'id' => $this->id,
+                    'title' => $this->title,
+                    'publication_date' => $this->publication_date
+                    ];
+        }}
+}}

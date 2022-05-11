@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class News extends Model
 {
@@ -36,6 +37,15 @@ class News extends Model
     public function categories()
     {
         return $this->belongsToMany(Categories::class, 'news_categories_laravel','id_new','id_category');
+    }
+
+    public static  function newsByCategory($id,$page) {
+      return  DB::table('news_laravel')
+            ->join('news_categories_laravel', 'news_laravel.id', '=', 'news_categories_laravel.id_new')
+            ->join('categories_laravel', 'news_categories_laravel.id_category', '=', 'categories_laravel.id')
+            ->where('categories_laravel.id', $id)
+            ->select('news_laravel.*')
+            ->paginate($page);
     }
 
 }

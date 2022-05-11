@@ -29,7 +29,8 @@ Route::get('/news/{id?}', [NewsController::class, 'news'])->name('news');
 
 //for the API
 Route::get('/api/noticia/{id}', function ($id) {
-    return new NewsResource(News::findOrFail($id));
+    return News::findOrFail($id);
+
 });
 
 Route::get('/api/noticias', function () {
@@ -41,10 +42,15 @@ Route::get('/api/noticias/{page}', function ($page) {
 });
 
 
-Route::get('/api/categoria/{id}/{page}', function ($id) {
-    return new CategoryResource(Categories::findOrFail($id));
+Route::get('/api/categoria/{id}/{page}', function ($id,$page) {
+    return  NewsResource::collection(News::newsByCategory($id,$page));
 });
 
-Route::get('/api/categoria', function () {
+
+/*Route::get('/api/categoria/{id}/{page}', function ($id) {
+    return new CategoryResource(Categories::findOrFail($id));
+});*/
+
+/*Route::get('/api/categoria', function () {
 return CategoryResource::collection(Categories::all());
-});
+});*/
