@@ -14,9 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('categories_laravel', function (Blueprint $table) {
-            //$table->increments('id');
             $table->id();
-            $table->string('name',50); //->unique();
+            $table->string('name',50); 
         });
     }
 

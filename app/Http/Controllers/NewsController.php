@@ -26,9 +26,5 @@ class NewsController extends Controller
         return view('news', ['news' => $news, 'id'=>intval($id)]);
     }
 
-   /* public function index()
-    {
-        $news = News::all();
-        return NewsResource::collection($news);
-    }*/
+   
 }

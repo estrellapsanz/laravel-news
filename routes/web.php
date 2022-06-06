@@ -40,16 +40,6 @@ Route::get('/api/noticias/{page}', function ($page) {
     return NewsResource::collection(News::paginate($page));
 });
 
-
 Route::get('/api/categoria/{id}/{page}', function ($id,$page) {
     return  NewsResource::collection(News::newsByCategory($id,$page));
 });
-
-
-/*Route::get('/api/categoria/{id}/{page}', function ($id) {
-    return new CategoryResource(Categories::findOrFail($id));
-});*/
-
-/*Route::get('/api/categoria', function () {
-return CategoryResource::collection(Categories::all());
-});*/

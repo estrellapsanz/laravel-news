@@ -18,7 +18,6 @@ class NewsResource extends JsonResource
     public function toArray($request)
     {
 
-
         if ($request->is('*/noticia/*')) {
 
         return [
@@ -28,7 +27,7 @@ class NewsResource extends JsonResource
             'author' => $this->author,
             'publication_date' => $this->publication_date,
             'img_path' => $this->img_path,
-             'categories'=>CategoryResource::collection(Categories::newsCategories(1))
+             'categories'=>CategoryResource::collection(Categories::newsCategories($this->id))
         ];
     }
         else if ($request->is('*/noticias/*')) {{
