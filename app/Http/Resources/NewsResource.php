@@ -18,15 +18,17 @@ class NewsResource extends JsonResource
     public function toArray($request)
     {
 
+
         if ($request->is('*/noticia/*')) {
+
         return [
-            'id' => $this->id,
+            'id_new' => $this->id,
             'title' => $this->title,
             'content' => $this->content,
             'author' => $this->author,
             'publication_date' => $this->publication_date,
             'img_path' => $this->img_path,
-            'categories'=>CategoryResource::collection($this->categories)
+             'categories'=>CategoryResource::collection(Categories::newsCategories(1))
         ];
     }
         else if ($request->is('*/noticias/*')) {{

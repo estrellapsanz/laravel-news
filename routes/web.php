@@ -29,8 +29,7 @@ Route::get('/news/{id?}', [NewsController::class, 'news'])->name('news');
 
 //for the API
 Route::get('/api/noticia/{id}', function ($id) {
-    return News::findOrFail($id);
-
+    return NewsResource::collection(News::newsById(($id)));
 });
 
 Route::get('/api/noticias', function () {

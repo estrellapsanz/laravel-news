@@ -27,8 +27,8 @@ class NewsCategoriesFactory extends Factory
     public function definition()
     {
         return [
-            'id_new'=>News::factory(),
-            'id_category'=> rand(1,6)// Categories::factory()
+            'id_new'=>$this->faker->numberBetween(1,150),
+            'id_category'=> rand(1,6)
         ];
     }
 }

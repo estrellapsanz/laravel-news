@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
 
 
         \App\Models\Categories::factory(6)->create();
-        \App\Models\NewsCategories::factory(150)->create();
+        \App\Models\News::factory(150)->create();
+        \App\Models\NewsCategories::factory(400)->create();
 
 
         /* \App\Models\News::factory(100)->create();
