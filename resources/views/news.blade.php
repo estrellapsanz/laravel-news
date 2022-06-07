@@ -442,7 +442,7 @@
 
                         <div class="ml-6">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                <img src="{{asset('/images/default.jpg')}}" width="
+                                <img src="{{asset('/images/'.$loop->index.'.jpg')}}" width="
                                 300" height="200">
                             </div>
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">

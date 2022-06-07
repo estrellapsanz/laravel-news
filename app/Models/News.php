@@ -51,8 +51,6 @@ class News extends Model
 
     public static  function newsById($id) {
         return  DB::table('news_laravel')
-            ->join('news_categories_laravel', 'news_laravel.id', '=', 'news_categories_laravel.id_new')
-            ->join('categories_laravel', 'news_categories_laravel.id_category', '=', 'categories_laravel.id')
             ->where('news_laravel.id', $id)
             ->select(DB::raw('*'))
             ->get();
